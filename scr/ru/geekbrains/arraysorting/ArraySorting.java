@@ -2,40 +2,43 @@ package ru.geekbrains.arraysorting;
 
 import java.util.Comparator;
 
-public class ArraySorting <T extends Comparable>{
+public class ArraySorting<T extends Comparable> {
     private T[] list;
     private int size;
     private final int DEFAULT_CAPACITY = 10;
 
-    public ArraySorting(int capacity){
-        if (capacity <= 0){
+    public ArraySorting(int capacity) {
+        if (capacity <= 0) {
             throw new IllegalArgumentException("capacity: " + capacity);
         }
         list = (T[]) new Comparable[capacity];
     }
-    public ArraySorting(){
+
+    public ArraySorting() {
         list = (T[]) new Comparable[DEFAULT_CAPACITY];
     }
 
-    public void add(T item){
+    public void add(T item) {
         list[size] = item;
         size++;
     }
 
-    public void add(int index, T item){
-        for (int i = size; i > index ; i--) {
+    public void add(int index, T item) {
+        for (int i = size; i > index; i--) {
             list[i] = list[i - 1];
         }
         list[index] = item;
         size++;
     }
-    public void remove(int index){
-        for (int i = index; i < size ; i++) {
+
+    public void remove(int index) {
+        for (int i = index; i < size; i++) {
             list[i] = list[i + 1];
         }
         size--;
         list[size] = null;
     }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[ ");
@@ -56,7 +59,7 @@ public class ArraySorting <T extends Comparable>{
         for (int i = 0; i < size - 1; i++) {
             int imin = i;
             for (int j = i + 1; j < size; j++) {
-                if( list[j].compareTo(list[imin])<0){
+                if (list[j].compareTo(list[imin]) < 0) {
                     imin = j;
                 }
             }
@@ -64,29 +67,30 @@ public class ArraySorting <T extends Comparable>{
         }
     }
 
-    public void insertionSort(){
+    public void insertionSort() {
         T key;
-        for (int i = 1; i <size ; i++) {
+        for (int i = 1; i < size; i++) {
             int j = i;
-            key  = list[i];
-            while(j>0 && key.compareTo(list[j-1])<0){
-                list[j] = list[j-1];
+            key = list[i];
+            while (j > 0 && key.compareTo(list[j - 1]) < 0) {
+                list[j] = list[j - 1];
                 j--;
             }
             list[j] = key;
         }
     }
-    public void bubbleSort(Comparator<T> comparator){
+
+    public void bubbleSort(Comparator<T> comparator) {
         boolean isSwap;
-        for (int i = size-1; i > 0 ; i--) {
+        for (int i = size - 1; i > 0; i--) {
             isSwap = false;
-            for (int j = 0; j < i ; j++) {
-                if( comparator.compare(list[j+1],list[j])<0 ){
-                    swap(j+1, j);
+            for (int j = 0; j < i; j++) {
+                if (comparator.compare(list[j + 1], list[j]) < 0) {
+                    swap(j + 1, j);
                     isSwap = true;
                 }
             }
-            if(!isSwap){
+            if (!isSwap) {
                 break;
             }
         }
