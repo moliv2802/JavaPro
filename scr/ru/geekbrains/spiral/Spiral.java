@@ -15,7 +15,7 @@ public class Spiral {
         int str = Integer.parseInt(reader.readLine());
         System.out.println("Введите количество столбцов: ");
         int col = Integer.parseInt(reader.readLine());
-        int [][] spiralArr = new int[str][col];
+        int[][] spiralArr = new int[str][col];
         System.out.println("Вы ввели массив размерностью [" + str + "][" + col + "], создаем спиральный массив...");
         for (int n = 0; k <= str*col; n++) {
             direction = n % 4;
